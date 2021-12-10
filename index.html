@@ -10,6 +10,8 @@
         <!-- =====BOX ICONS===== -->
         <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
 
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css">
+
         <title>My Portfolio Website</title>
     </head>
     <body>
@@ -167,11 +169,15 @@
                 <h2 class="section-title">Contact</h2>
 
                 <div class="contact__container bd-grid">
-                    <form action="" class="contact__form">
-                        <input type="text" placeholder="Name" class="contact__input">
-                        <input type="mail" placeholder="Email" class="contact__input">
-                        <textarea name="" id="" cols="0" rows="10" class="contact__input"></textarea>
-                        <input type="button" value="Kirim" class="contact__button button">
+                    
+                    <form action="" class="contact__form" name="ben-contact-form">
+                        <input type="text" placeholder="Name" class="contact__input" name="nama">
+
+                        <input type="email" placeholder="Email" class="contact__input" name="email">
+
+                        <textarea id="" cols="0" rows="10" class="contact__input" name="pesan"></textarea>
+
+                        <button type="submit" class="contact__button button">Kirim</button>
                     </form>
                 </div>
             </section>
@@ -194,5 +200,22 @@
 
         <!--===== MAIN JS =====-->
         <script src="assets/js/main.js"></script>
+
+        <script>
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwrwMmNRxirlAvfSS1E6FtdDycJxzM72x857tz8kUj93PHJUBsFwC67xjeE4Zp_Ut0/exec'
+            const form = document.forms['ben-contact-form']
+          
+            form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                alert('Terima Kasih, komentar anda sudah terkirim');
+                form.reset();
+                console.log('Success!', response)
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
+          </script>
+
     </body>
 </html>
